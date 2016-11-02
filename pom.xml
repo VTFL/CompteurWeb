@@ -14,8 +14,34 @@
       <version>3.8.1</version>
       <scope>test</scope>
     </dependency>
+    <dependency>
+      <groupId>tomcat</groupId>
+      <artifactId>servlet-api</artifactId>
+      <version>5.5.23</version>
+      <scope>provided</scope>
+    </dependency>
+    <dependency>
+      <groupId>tomcat</groupId>
+      <artifactId>jsp-api</artifactId>
+      <version>5.5.23</version>
+      <scope>provided</scope>
+    </dependency>
   </dependencies>
   <build>
     <finalName>CompteurWeb</finalName>
+    <plugins>
+      <plugin>
+        <groupId>org.apache.tomcat.maven</groupId>
+        <artifactId>tomcat7-maven-plugin</artifactId>
+        <version>2.2</version>
+        <configuration>
+          <path>/${project.build.finalName}</path>
+          <update>true</update>
+          <url>http://localhost:8080/manager/text</url>
+          <username>ADMIN</username>
+          <password>0000</password>
+        </configuration>
+      </plugin>
+    </plugins>
   </build>
 </project>
