@@ -4,4 +4,16 @@
 
 <web-app>
   <display-name>Archetype Created Web Application</display-name>
+
+  <servlet>
+    <servlet-name>CountDown</servlet-name>
+    <servlet-class>CountDown</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>CountDown</servlet-name>
+    <url-pattern>/countdown</url-pattern>
+  </servlet-mapping>
 </web-app>
+
+
+
