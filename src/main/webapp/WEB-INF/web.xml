@@ -6,12 +6,12 @@
   <display-name>Archetype Created Web Application</display-name>
 
   <servlet>
-    <servlet-name>CountDown</servlet-name>
-    <servlet-class>CountDown</servlet-class>
+    <servlet-name>index</servlet-name>
+    <servlet-class>Index</servlet-class>
   </servlet>
   <servlet-mapping>
-    <servlet-name>CountDown</servlet-name>
-    <url-pattern>/countdown</url-pattern>
+    <servlet-name>index</servlet-name>
+    <url-pattern>/</url-pattern>
   </servlet-mapping>
 </web-app>
 
