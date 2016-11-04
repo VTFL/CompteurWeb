@@ -26,11 +26,6 @@
       <version>5.5.23</version>
       <scope>provided</scope>
     </dependency>
-    <dependency>
-      <groupId>org.webjars</groupId>
-      <artifactId>bootstrap</artifactId>
-      <version>3.3.6</version>
-    </dependency>
   </dependencies>
   <build>
     <finalName>CompteurWeb</finalName>
