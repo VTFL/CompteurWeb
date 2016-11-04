@@ -2,21 +2,49 @@
 <head><meta charset="UTF-8"/></head>
 <body>
 <link href="css/bootstrap.min.css" rel="stylesheet">
-<h2>Ouiii</h2>
-<nav class="navbar navbar-fixed-top navbar-dark bg-inverse">
-    <a class="navbar-brand" href="#">Project name</a>
-    <ul class="nav navbar-nav">
-        <li class="nav-item active">
-            <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" href="#">About</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" href="#">Contact</a>
-        </li>
-    </ul>
-</nav>
+
+
+
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-10"></div>
+        <div class="col-md-2">
+            <table>
+                <form method="post" action="traitement.php">
+                    <tr>
+                        <td>
+                            Titre
+                        </td>
+                        <td>
+                            <input name="titre" type="text" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            Langue
+                        </td>
+                        <td>
+                            <select name="langue">
+                                <option value="France">France</option>
+                                <!-- etc... -->
+                            </select>
+                        </td>
+
+                    </tr>
+                    <tr>
+                        <td>
+                            Echeance
+                        </td>
+                        <td>
+                            <input name="echeance" type="datetime-local" />
+                        </td>
+                    </tr>
+                </form>
+            </table>
+        </div>
+    </div>
+</div>
 
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
