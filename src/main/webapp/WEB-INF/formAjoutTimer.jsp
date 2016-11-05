@@ -48,7 +48,7 @@
                             <input class="timerForm" name="echeance" type="datetime-local" />
                         </td>
                     </tr>
-                    <tr class="formButton">
+                    <tr class="submitButton">
                         <td colspan="2">
                         <input type="submit" value="Go !" class="btn btn-primary"/>
                         </td>
