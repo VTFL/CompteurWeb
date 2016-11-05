@@ -48,6 +48,7 @@
       <version>1.1</version>
     </dependency>
     <!-- https://mvnrepository.com/artifact/javax.json/javax.json-api -->
+    <!--pas encore utilisé -->
     <dependency>
       <groupId>javax.json</groupId>
       <artifactId>javax.json-api</artifactId>
