@@ -12,8 +12,10 @@
 <div class="container">
     <div class="row">
         <div class="col-md-4"></div>
-
-        <%@include file="WEB-INF/formAjoutTimer.jsp" %>
+        <div class="col-md-4"><%@include file="WEB-INF/formAjoutTimer.jsp" %></div>
+        <div class="col-md-4"></div>
+    </div>
+    <div class="row">
 
     </div>
 </div>
