@@ -18,7 +18,7 @@
             </thead>
             <tbody>
 
-                <form method="post" action="traitement.php">
+                <form method="post" action="Jesus.jsp">
 
                     <tr>
                         <td>
@@ -46,6 +46,11 @@
                         </td>
                         <td>
                             <input class="timerForm" name="echeance" type="datetime-local" />
+                        </td>
+                    </tr>
+                    <tr class="formButton">
+                        <td colspan="2">
+                        <input type="submit" value="Go !" class="btn btn-primary"/>
                         </td>
                     </tr>
                 </form>
