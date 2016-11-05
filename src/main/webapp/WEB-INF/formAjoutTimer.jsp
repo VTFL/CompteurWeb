@@ -12,7 +12,7 @@
             <thead>
             <tr>
                 <th colspan="2">
-                    A vous d'ajouter un Timer
+                    <div id="error-message"> </div>
                 </th>
             </tr>
             </thead>
@@ -25,7 +25,7 @@
                             <b>Titre</b>
                         </td>
                         <td>
-                            <input class="timerForm"  name="titre" type="text" />
+                            <input id="titre" class="timerForm"  name="titre" type="text" />
                         </td>
                     </tr>
                     <tr>
@@ -33,9 +33,13 @@
                             <b>Langue</b>
                         </td>
                         <td>
-                            <select class="timerForm" name="langue">
-                                <option value="France">France</option>
-                                <!-- etc... -->
+                            <select id="langue" class="timerForm" name="langue">
+                                <%
+                                    String[] listpays = (String[]) request.getAttribute("listpays");
+                                    for(String pays : listpays){
+                                        out.println("<option value="+pays+">"+pays+"</option>");
+                                    }
+                                %>
                             </select>
                         </td>
 
@@ -45,12 +49,12 @@
                             <b>Echeance</b>
                         </td>
                         <td>
-                            <input class="timerForm" name="echeance" type="datetime-local" />
+                            <input id="echeance" class="timerForm" name="echeance" type="datetime-local" />
                         </td>
                     </tr>
                     <tr class="submitButton">
                         <td colspan="2">
-                        <input type="submit" value="Go !" class="btn btn-primary"/>
+                        <input id="submit" type="Button" value="Go !" class="btn btn-primary"/>
                         </td>
                     </tr>
                 </form>
@@ -58,3 +62,37 @@
 
         </table>
     </div>
+
+<script type="text/javascript">
+    $(function() {
+        $("#submit").click(function(){
+            var valid = true
+            $("#error-message").text(" ");
+            $("#titre").css("border-color","");
+            $("#echeance").css("border-color","");
+
+            if($("#titre").val() === ""){
+                $("#titre").css("border-color","red");
+                $("#error-message").text("Veuillez entrer un titre");
+                valid = false
+            }
+            if($("#titre").val().match(/[^a-z A-Z 0-9]/)){
+                $("#titre").css("border-color","red");
+                $("#error-message").text("Le titre ne peut être composé que de lettres ou de chiffres");
+                valid = false
+            }
+            if($("#echeance").val() === ""){
+                $("#echeance").css("border-color","red");
+                $("#error-message").text("Veuillez entrer une échéance");
+                valid = false
+            }
+            alert(new Date($("#echeance").val()) + $("#echeance").val() )
+            if(new Date($("#echeance").val()) < new Date()){
+                $("#echeance").css("border-color","red");
+                $("#error-message").text("L'échéance ne peut pas être dans le passé");
+                valid = false
+            }
+            return valid
+        })
+    });
+</script>
