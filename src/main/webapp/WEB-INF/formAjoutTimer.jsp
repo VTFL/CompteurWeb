@@ -19,14 +19,14 @@
             </thead>
             <tbody>
 
-                <form class="timerForm" method="post" action="traitement.php">
+                <form method="post" action="traitement.php">
 
                     <tr>
                         <td>
                             <b>Titre</b>
                         </td>
                         <td>
-                            <input  name="titre" type="text" />
+                            <input class="timerForm"  name="titre" type="text" />
                         </td>
                     </tr>
                     <tr>
@@ -34,7 +34,7 @@
                             <b>Langue</b>
                         </td>
                         <td>
-                            <select name="langue">
+                            <select class="timerForm" name="langue">
                                 <option value="France">France</option>
                                 <!-- etc... -->
                             </select>
@@ -46,7 +46,7 @@
                             <b>Echeance</b>
                         </td>
                         <td>
-                            <input name="echeance" type="datetime-local" />
+                            <input class="timerForm" name="echeance" type="datetime-local" />
                         </td>
                     </tr>
                 </form>
