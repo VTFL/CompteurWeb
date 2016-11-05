@@ -101,8 +101,8 @@
             <input id="radio1" type="radio" name="group1" value="/CompteurWeb/websocket/EchoEndpoint"
                    onclick="updateTarget(this.value);"/> <label for="radio1">programmatic API</label>
             <!-- echo example avec anotation (coté serveur) -->
-            <input id="radio2" type="radio" name="group1" value="/CompteurWeb/websocket/EchoAnnotation"
-                   onclick="updateTarget(this.value);"/> <label for="radio2">annotation API</label>
+            <input id="radio2" type="radio" name="group1" value="/CompteurWeb/websocket/CreateTimer"
+                   onclick="updateTarget(this.value);"/> <label for="radio2">CreateTimer</label>
         </div>
         <div>
             <input id="target" type="text" size="40" style="width: 350px"/>
