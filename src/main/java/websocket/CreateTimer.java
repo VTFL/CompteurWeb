@@ -12,11 +12,14 @@ import javax.websocket.PongMessage;
 import javax.websocket.Session;
 import javax.websocket.server.ServerEndpoint;
 
-@ServerEndpoint("/websocket/EchoAnnotation")
-public class EchoAnnotation {
+@ServerEndpoint("/websocket/CreateTimer")
+public class CreateTimer {
 
+    // A chaque fois qu'on reçoit un nouveau message de la part du client on cré un nouveau Timer
+    // on stock le Timer
+    // et on met en place la boucle qui envoi au client le timer mis a jour toute les secondes
     @OnMessage
-    public void echoTextMessage(Session session, String msg, boolean last) {
+    public void onMessage(Session session, String msg, boolean last) {
         try {
             if (session.isOpen()) {
                 session.getBasicRemote().sendText(msg+"lol", last);
