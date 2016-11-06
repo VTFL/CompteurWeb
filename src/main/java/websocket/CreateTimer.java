@@ -5,8 +5,9 @@ package websocket;
  */
 
 import java.io.IOException;
-import java.nio.ByteBuffer;
 
+
+import org.json.*;
 import javax.websocket.OnMessage;
 import javax.websocket.PongMessage;
 import javax.websocket.Session;
@@ -19,12 +20,13 @@ public class CreateTimer {
     // on stock le Timer
     // et on met en place la boucle qui envoi au client le timer mis a jour toute les secondes
     @OnMessage
-    public void onMessage(Session session, String msg, boolean last) {
+    public void onMessage(Session session, String jsonMessage) {
         try {
             if (session.isOpen()) {
-                session.getBasicRemote().sendText("message :"+msg, last);
+                JSONObject data = new JSONObject(jsonMessage);
+				session.getBasicRemote().sendText(data.getString("langue"));
             }
-        } catch (IOException e) {
+        } catch (Exception e) {
             try {
                 session.close();
             } catch (IOException e1) {

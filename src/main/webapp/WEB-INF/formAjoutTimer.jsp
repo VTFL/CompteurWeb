@@ -83,12 +83,15 @@
             alert('Received: ' + event.data);
         };
         ws.onclose = function (event) {
-            alert('Info: WebSocket connection closed, Code: ' + event.code + (event.reason == "" ? "" : ", Reason: " + event.reason));
         };
     }
 
     $(function() {
         connect()
+        /*pour le test*/
+        $("#langue").val("France")
+        $("#titre").val("aaaa")
+        $("#echeance").val("2020-01-24T01:01")
         $("#submit").click(function(){
             var valid = true
             $("#error-message").text(" ");
@@ -116,7 +119,9 @@
                 valid = false
             }
             if(valid){
-                ws.send("coucou")
+                var data = {langue : $("#langue").val() ,titre : $("#titre").val(),echeance : $("#echeance").val()};
+                ws.send(JSON.stringify(data))
+                alert(JSON.stringify(data))
             }
 
             return valid
