@@ -21,12 +21,12 @@
     </div>
 </div>
 
-<!--test à supprimer par la suite -->
+<!--test à supprimer par la suite
 <div class="container">
     <div class="row">
-        <%@include file="WEB-INF/formTestSocket.jsp" %>
+        <%//@include file="WEB-INF/formTestSocket.jsp" %>
     </div>
-</div>
+</div> -->
 
 
 </body>

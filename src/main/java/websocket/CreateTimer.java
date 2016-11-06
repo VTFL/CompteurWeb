@@ -22,7 +22,7 @@ public class CreateTimer {
     public void onMessage(Session session, String msg, boolean last) {
         try {
             if (session.isOpen()) {
-                session.getBasicRemote().sendText(msg+"lol", last);
+                session.getBasicRemote().sendText("message :"+msg, last);
             }
         } catch (IOException e) {
             try {

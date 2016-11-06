@@ -64,7 +64,31 @@
     </div>
 
 <script type="text/javascript">
+    var ws = null;
+    function connect() {
+        var target ='ws://' + window.location.host+"/CompteurWeb/websocket/CreateTimer";
+
+        if ('WebSocket' in window) {
+            ws = new WebSocket(target);
+        } else if ('MozWebSocket' in window) {
+            ws = new MozWebSocket(target);
+        } else {
+            alert('WebSocket is not supported by this browser.');
+            return;
+        }
+        ws.onopen = function () {
+            alert('Info: WebSocket connection opened.');
+        };
+        ws.onmessage = function (event) {
+            alert('Received: ' + event.data);
+        };
+        ws.onclose = function (event) {
+            alert('Info: WebSocket connection closed, Code: ' + event.code + (event.reason == "" ? "" : ", Reason: " + event.reason));
+        };
+    }
+
     $(function() {
+        connect()
         $("#submit").click(function(){
             var valid = true
             $("#error-message").text(" ");
@@ -86,13 +110,17 @@
                 $("#error-message").text("Veuillez entrer une échéance");
                 valid = false
             }
-            alert(new Date($("#echeance").val()) + $("#echeance").val() )
             if(new Date($("#echeance").val()) < new Date()){
                 $("#echeance").css("border-color","red");
                 $("#error-message").text("L'échéance ne peut pas être dans le passé");
                 valid = false
             }
+            if(valid){
+                ws.send("coucou")
+            }
+
             return valid
         })
     });
+
 </script>
