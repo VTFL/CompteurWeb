@@ -18,7 +18,7 @@ public class CreateTimer {
 
     // A chaque fois qu'on reçoit un nouveau message de la part du client on cré un nouveau Timer
     // on stock le Timer dans la base avec sont userID
-    // et on met en place la boucle qui envoi au client le timer mis a jour toute les secondes
+    // et on met en place la boucle qui envoi au client les timers mis a jour toutes les secondes
 
     @OnMessage
     public void onMessage(Session session, String jsonMessage) {

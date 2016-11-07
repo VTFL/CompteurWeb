@@ -22,14 +22,16 @@ public class Index extends HttpServlet {
 		Cookie[] cookies = request.getCookies();
 		boolean cookieExist = false;
 		for(Cookie cookie : cookies){
-			if(cookie.getName() == "userID"){
+			if(cookie.getName().equals("userID")){
 				cookieExist = true;
 			}
 		}
 		if(!cookieExist){
-			response.addCookie(new Cookie("userID",""+userID));
+			Cookie c = new Cookie("userID",""+userID);
+			response.addCookie(c);
 			++userID;
 		}
+
 		this.getServletContext()
 				.getRequestDispatcher( "/index.jsp" )
 				.forward( request, response );
