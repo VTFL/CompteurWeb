@@ -8,6 +8,8 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <div class="row">
     <div class="panel">
+
         TimeHere
+        <span id="testTimer1"></span>
     </div>
 </div>
