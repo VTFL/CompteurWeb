@@ -7,7 +7,7 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
-    <div class="well">
+<div class="well">
         <table class="table">
             <thead>
             <tr>
@@ -86,6 +86,7 @@
         };
     }
 
+
     $(function() {
         connect()
         /*pour le test*/
@@ -118,10 +119,25 @@
                 $("#error-message").text("L'échéance ne peut pas être dans le passé");
                 valid = false
             }
+            function getCookie(cname) {
+
+                var name = cname + "=";
+                var ca = document.cookie.split(';');
+                for(var i = 0; i < ca.length; i++) {
+                    var c = ca[i];
+                    while (c.charAt(0) == ' ') {
+                        c = c.substring(1);
+                    }
+                    if (c.indexOf(name) == 0) {
+                        return c.substring(name.length, c.length);
+                    }
+                }
+                return "";
+            }
             if(valid){
-                var data = {langue : $("#langue").val() ,titre : $("#titre").val(),echeance : $("#echeance").val()};
+                var iduser = getCookie("userID")
+                var data = {userID : iduser,langue : $("#langue").val() ,titre : $("#titre").val(),echeance : $("#echeance").val()};
                 ws.send(JSON.stringify(data))
-                alert(JSON.stringify(data))
             }
 
             return valid

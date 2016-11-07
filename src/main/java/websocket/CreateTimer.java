@@ -26,7 +26,7 @@ public class CreateTimer {
             if (session.isOpen()) {
                 JSONObject data = new JSONObject(jsonMessage);
 
-				session.getBasicRemote().sendText(data.getString("langue"));
+				session.getBasicRemote().sendText(data.getString("userID"));
                 session.getId();
             }
         } catch (Exception e) {
