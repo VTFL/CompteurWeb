@@ -4,6 +4,7 @@ import beans.Compteur;
 
 import java.sql.*;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 /**
  * Created by thiba on 03/11/2016.
@@ -78,7 +79,6 @@ public class DatabaseManager {
             int gmt=c.getGmt();
             String date=c.getDate();
             int idSession = c.getIdSession();
-            //INSERT INTO `compteurs`(`titre`, `gmt`, `date`, `idSession`) VALUES ('testTitre',1,'2010/01/22',5)
             myBool = stmt.execute( "UPDATE `compteurs` SET `titre` = '"+titre+"' ,`gmt` = "+gmt+",`date` = '"+date+"' WHERE id = "+c.getId()+" ;");
 
             stmt.close();
@@ -86,18 +86,16 @@ public class DatabaseManager {
         return myBool;
     }
 
+    public boolean insererLocales(HashMap<String,Integer> hm){
+        String insert = "INSERT INTO locales VALUES";
+        String sql ="";
+        for(String s : hm.keySet()){
+            sql+=insert+" ('"+s+"' , "+hm.get(s)+");";
+        }
+        return true;
+    }
+
     public static void main(String[] args) {
-        DatabaseManager db = new DatabaseManager();
-        //08/11/2016 17:30:00
-        Compteur c = new Compteur(-1,"monTitre2",1,"08/11/2016 17:30:00",6);
-        Compteur c2 = new Compteur(-1,"monTitre2",1,"08/11/2016 17:30:00",7);
-        db.ajouterCompteur(c);
-        db.ajouterCompteur(c2);
-        ArrayList<Compteur> ac = db.getCompteurs(5);
-        Compteur aModif = ac.get(0);
-        aModif.setTitre("TitreModifié9");
-        db.modifierCompteur(aModif);
-        db.supprimerCompteur(db.getCompteurs(7).get(0).getId());
 
     }
 }
