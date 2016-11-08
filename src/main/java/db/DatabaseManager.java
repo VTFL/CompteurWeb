@@ -4,7 +4,6 @@ import beans.Compteur;
 
 import java.sql.*;
 import java.util.ArrayList;
-import java.util.concurrent.Exchanger;
 
 /**
  * Created by thiba on 03/11/2016.
@@ -31,13 +30,13 @@ public class DatabaseManager {
             int id=0;
             String titre="";
             int gmt=0;
-            Date date=null;
+            String date="";
             Compteur c;
             while ( resultat.next() ) {
                 id = resultat.getInt("id");
                 titre = resultat.getString( "titre" );
                 gmt = resultat.getInt( "gmt" );
-                date = resultat.getDate("date");
+                date = resultat.getString("date");
                 c = new Compteur(id,titre,gmt,date,idSession);
                 ret.add(c);
             }

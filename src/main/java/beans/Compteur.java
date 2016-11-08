@@ -11,11 +11,11 @@ public class Compteur {
     private int id;
     private String titre;
     private int gmt;
-    private java.sql.Date date;
+    private String date;
     private int idSession;
     private String majCompteur;
 
-    public Compteur(int id, String titre, int gmt, Date date, int idSession) {
+    public Compteur(int id, String titre, int gmt, String date, int idSession) {
 
         this.id = id;
         this.titre = titre;
@@ -51,11 +51,11 @@ public class Compteur {
         this.gmt = gmt;
     }
 
-    public Date getDate() {
+    public String getDate() {
         return date;
     }
 
-    public void setDate(Date date) {
+    public void setDate(String date) {
         this.date = date;
     }
 
