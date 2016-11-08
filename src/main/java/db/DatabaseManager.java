@@ -45,23 +45,59 @@ public class DatabaseManager {
         return ret;
     }
 
-    public void ajouterCompteur(Compteur c){
+    public boolean ajouterCompteur(Compteur c){
+        boolean myBool = false;
         try{
             Statement stmt = conn.createStatement();
             String titre=c.getTitre();
             int gmt=c.getGmt();
-            Date date=c.getDate();
+            String date=c.getDate();
             int idSession = c.getIdSession();
             //INSERT INTO `compteurs`(`titre`, `gmt`, `date`, `idSession`) VALUES ('testTitre',1,'2010/01/22',5)
-            ResultSet resultat = stmt.executeQuery( "INSERT INTO `compteurs`(`titre`,`gmt`,`date`,`idSession`) VALUES ('"+titre+ "', '"+gmt+"' , '"+date+"' , '"+idSession+"');");
+            myBool = stmt.execute( "INSERT INTO `compteurs`(`titre`,`gmt`,`date`,`idSession`) VALUES ('"+titre+ "', '"+gmt+"' , '"+date+"' , '"+idSession+"');");
+            stmt.close();
+        }catch(Exception e){e.printStackTrace();}
+        return myBool;
+    }
+
+    public boolean supprimerCompteur(int idCompteur){
+        boolean myBool = false;
+        try{
+            Statement stmt = conn.createStatement();
+            myBool = stmt.execute( "DELETE FROM compteurs WHERE `id` = '"+idCompteur+"';");
+            stmt.close();
+        }catch(Exception e){e.printStackTrace();}
+        return myBool;
+    }
+
+    public boolean modifierCompteur(Compteur c){
+        boolean myBool = false;
+        try{
+            Statement stmt = conn.createStatement();
+            String titre=c.getTitre();
+            int gmt=c.getGmt();
+            String date=c.getDate();
+            int idSession = c.getIdSession();
+            //INSERT INTO `compteurs`(`titre`, `gmt`, `date`, `idSession`) VALUES ('testTitre',1,'2010/01/22',5)
+            myBool = stmt.execute( "UPDATE `compteurs` SET `titre` = '"+titre+"' ,`gmt` = "+gmt+",`date` = '"+date+"' WHERE id = "+c.getId()+" ;");
 
             stmt.close();
         }catch(Exception e){e.printStackTrace();}
+        return myBool;
     }
 
     public static void main(String[] args) {
         DatabaseManager db = new DatabaseManager();
+        //08/11/2016 17:30:00
+        Compteur c = new Compteur(-1,"monTitre2",1,"08/11/2016 17:30:00",6);
+        Compteur c2 = new Compteur(-1,"monTitre2",1,"08/11/2016 17:30:00",7);
+        db.ajouterCompteur(c);
+        db.ajouterCompteur(c2);
         ArrayList<Compteur> ac = db.getCompteurs(5);
-        for(Compteur c : ac) System.out.println(c);
+        Compteur aModif = ac.get(0);
+        aModif.setTitre("TitreModifié9");
+        db.modifierCompteur(aModif);
+        db.supprimerCompteur(db.getCompteurs(7).get(0).getId());
+
     }
 }
