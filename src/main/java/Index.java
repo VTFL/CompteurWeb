@@ -19,6 +19,16 @@ public class Index extends HttpServlet {
 			throws ServletException, IOException {
 		String[] listpays = {"France","Royaume-Uni","USA","Russie","Yemen"};
 		request.setAttribute("listpays",listpays);
+
+		ajoutCookieUserID(request,response);
+
+		this.getServletContext()
+				.getRequestDispatcher( "/index.jsp" )
+				.forward( request, response );
+	}
+
+
+	public HttpServletResponse ajoutCookieUserID(HttpServletRequest request, HttpServletResponse response ){
 		Cookie[] cookies = request.getCookies();
 		boolean cookieExist = false;
 		for(Cookie cookie : cookies){
@@ -31,11 +41,7 @@ public class Index extends HttpServlet {
 			response.addCookie(c);
 			++userID;
 		}
-
-		this.getServletContext()
-				.getRequestDispatcher( "/index.jsp" )
-				.forward( request, response );
+		return response;
 	}
-
 
 }
