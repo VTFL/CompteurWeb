@@ -1,4 +1,5 @@
+CompteurWeb.iml
 .idea
 .idea/*
-CompteurWeb.iml
 target/
+.gitignore

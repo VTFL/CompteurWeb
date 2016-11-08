@@ -1,0 +1,9 @@
+.timerForm{
+    width : 100%;
+}
+.submitButton{
+    text-align: center;
+}
+#error-message{
+    color: red;
+}
