@@ -95,6 +95,23 @@ public class DatabaseManager {
         return true;
     }
 
+    public HashMap<String,Integer> getLocales(){
+        HashMap<String,Integer> ret = new HashMap<>();
+        try{
+            Statement stmt = conn.createStatement();
+            ResultSet resultat = stmt.executeQuery( "SELECT * FROM compteurweb.compteurs" );
+            String Pays ="";
+            int GMT =0;
+            while ( resultat.next() ) {
+                Pays = resultat.getString("Pays");
+                GMT = resultat.getInt("GMT");
+                ret.put(Pays,GMT);
+            }
+            stmt.close();
+        }catch(Exception e){e.printStackTrace();}
+        return ret;
+    }
+
     public static void main(String[] args) {
 
     }
