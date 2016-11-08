@@ -2,9 +2,12 @@ package db;
 
 import beans.Compteur;
 
+import java.io.InputStream;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Map;
+import java.util.Scanner;
 
 /**
  * Created by thiba on 03/11/2016.
@@ -110,6 +113,82 @@ public class DatabaseManager {
             stmt.close();
         }catch(Exception e){e.printStackTrace();}
         return ret;
+    }
+
+    private HashMap<String,Integer> parse()  {
+
+        String line ="";
+        String capitale ="";
+        String pays="";
+        String[] tabListeCap;
+
+        InputStream f = this.getClass().getResourceAsStream("/cities.txt");
+        InputStream f2 = this.getClass().getResourceAsStream("/ListeCapitale.csv");
+
+        Scanner sc = new Scanner(f);
+        Scanner sc2 = new Scanner(f2);
+
+        HashMap<String,Integer> hmRes = new HashMap<String, Integer>();
+        HashMap<String,String> hmCap = new HashMap<String, String>();
+
+        String listeCap = sc2.nextLine();
+
+        while (sc2.hasNextLine()) {
+
+            listeCap = sc2.nextLine();
+            listeCap = listeCap.replace("\"", "");
+            tabListeCap = listeCap.split(",");
+
+            hmCap.put(tabListeCap[1],tabListeCap[0]);
+        }
+
+        while (sc.hasNextLine()) {
+            line = sc.next();
+            pays ="";
+            String signe = "#";
+
+            if(line.contains("GMT")) {
+
+                String[] temp = line.split(",");
+
+                capitale = temp[0].replace("\"","");
+
+                for(Map.Entry<String, String> entry : hmCap.entrySet()) {
+
+                    String cap = entry.getKey();
+                    String country = entry.getValue();
+
+                    if(cap.equals(capitale))
+                        pays = country;
+                }
+
+                if (! pays.equals("")) {
+
+                    int intGmt =0;
+
+                    if (temp[1].contains("+")) {
+                        signe = "\\+";
+                        String gmt = temp[1].split(signe)[1];
+                        gmt = gmt.split(":")[0];
+                        intGmt = new Integer(gmt);
+                    } else {
+                        if (temp[1].contains("-")) {
+                            signe = "-";
+                            String gmt = temp[1].split(signe)[1];
+                            gmt = gmt.split(":")[0];
+                            int tmp = Integer.parseInt(gmt)*-1;
+                            intGmt = tmp;
+                        }
+                    }
+
+                    hmRes.put(pays, intGmt);
+
+                }
+            }
+            sc.nextLine();
+        }
+
+        return hmRes;
     }
 
     public static void main(String[] args) {
