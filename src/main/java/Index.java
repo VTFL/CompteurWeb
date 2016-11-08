@@ -13,6 +13,9 @@ import java.io.*;
 import javax.servlet.*;
 import javax.servlet.http.*;
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Scanner;
 
 public class Index extends HttpServlet {
 
@@ -30,7 +33,7 @@ public class Index extends HttpServlet {
 		this.getServletContext()
 				.getRequestDispatcher( "/index.jsp" )
 				.forward( request, response );
-	}*/
+	}
 
 	/*@Override
 	public void doGet(HttpServletRequest request, HttpServletResponse response )
@@ -41,34 +44,6 @@ public class Index extends HttpServlet {
 		request.setAttribute( "local", hmLocal );
 		this.getServletContext().getRequestDispatcher( "/WEB-INF/test.jsp" ).forward( request, response );
 	}*/
-
-	//private HashMap<String,Integer> parse()  {
-    private String parse() {
-
-		String line ="";
-		String capitale ="";
-		String pays="";
-		String[] tabListeCap;
-
-        InputStream f = this.getClass().getResourceAsStream("/cities.txt");
-        InputStream f2 = this.getClass().getResourceAsStream("/ListeCapitale.csv");
-
-        Scanner sc = new Scanner(f);
-        Scanner sc2 = new Scanner(f2);
-
-        HashMap<String,Integer> hmRes = new HashMap<String, Integer>();
-		HashMap<String,String> hmCap = new HashMap<String, String>();
-
-        String listeCap = sc2.nextLine();
-
-		while (sc2.hasNextLine()) {
-
-			listeCap = sc2.nextLine();
-			listeCap = listeCap.replace("\"", "");
-			tabListeCap = listeCap.split(",");
-
-			hmCap.put(tabListeCap[1],tabListeCap[0]);
-		}
 
 
 	public Cookie ajoutCookieUserID(Cookie[] cookies){
@@ -86,6 +61,34 @@ public class Index extends HttpServlet {
 		}
 		return c;
 	}
+
+	//private HashMap<String,Integer> parse()  {
+	private String parse() {
+
+		String line ="";
+		String capitale ="";
+		String pays="";
+		String[] tabListeCap;
+
+		InputStream f = this.getClass().getResourceAsStream("/cities.txt");
+		InputStream f2 = this.getClass().getResourceAsStream("/ListeCapitale.csv");
+
+		Scanner sc = new Scanner(f);
+		Scanner sc2 = new Scanner(f2);
+
+		HashMap<String,Integer> hmRes = new HashMap<String, Integer>();
+		HashMap<String,String> hmCap = new HashMap<String, String>();
+
+		String listeCap = sc2.nextLine();
+
+		while (sc2.hasNextLine()) {
+
+			listeCap = sc2.nextLine();
+			listeCap = listeCap.replace("\"", "");
+			tabListeCap = listeCap.split(",");
+
+			hmCap.put(tabListeCap[1],tabListeCap[0]);
+		}
 
 		while (sc.hasNextLine()) {
 			line = sc.next();
