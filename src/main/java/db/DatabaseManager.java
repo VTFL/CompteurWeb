@@ -89,12 +89,30 @@ public class DatabaseManager {
         return myBool;
     }
 
-    public boolean insererLocales(HashMap<String,Integer> hm){
+    public boolean insererLocales(){
         String insert = "INSERT INTO locales VALUES";
         String sql ="";
+        HashMap<String,Integer> hm = parse();
+        Boolean myBool;
+        int cpt=0;
         for(String s : hm.keySet()){
-            sql+=insert+" ('"+s+"' , "+hm.get(s)+");";
+
+            sql+=insert+" ('"+s.replace('\'',' ')+"' , "+hm.get(s)+"); ";
+            try{
+                Statement stmt = conn.createStatement();
+                myBool = stmt.execute(sql);
+
+                stmt.close();
+            }catch(Exception e){e.printStackTrace();}
+            sql="";
         }
+        /*try{
+            Statement stmt = conn.createStatement();
+            myBool = stmt.execute(sql);
+
+            stmt.close();
+        }catch(Exception e){e.printStackTrace();}*/
+        System.out.println(sql);
         return true;
     }
 
@@ -192,6 +210,7 @@ public class DatabaseManager {
     }
 
     public static void main(String[] args) {
-
+        DatabaseManager db = new DatabaseManager();
+        db.insererLocales();
     }
 }
