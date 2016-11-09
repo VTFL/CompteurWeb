@@ -47,7 +47,9 @@
                 string += "Titre       : "+testJson[i].titre + "<br/>";
                 string += "GMT         : "+testJson[i].gmt + "<br/>";
                 string += "Echéance    : "+testJson[i].date + "<br/>";
-                string += "TPS restant : "+testJson[i].majCompteur + "<br/>";
+                string += "TPS restant : "+testJson[i].majCompteur + "<br/><br/>";
+                string += "<button type=\"button\" class=\"btn btn-info\">Modifier</button> ";
+                string += "<button type=\"button\" class=\"btn btn-danger\">Supprimer</button><br/><br/>"
                 string += "------------------------------------------------------------";
             }
             test.innerHTML= string;
