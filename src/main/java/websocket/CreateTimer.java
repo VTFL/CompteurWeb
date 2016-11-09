@@ -42,8 +42,8 @@ public class CreateTimer {
                 String newDateFormat = sdf1.format(sdf2.parse(data.getString("echeance")))
                         .toString();
 
-                dbm.ajouterCompteur(new Compteur(23,data.getString("titre"),
-                        1,newDateFormat,data.getInt("userID")));
+                dbm.ajouterCompteur(new Compteur(0,data.getString("titre"),
+                        data.getInt("gmt"),newDateFormat,data.getInt("idSession")));
 
 
 
