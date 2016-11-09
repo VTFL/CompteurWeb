@@ -1,6 +1,8 @@
 /**
  * Created by Lucas-PC on 02/11/2016.
  */
+import db.DatabaseManager;
+
 import java.io.IOException;
 
 
@@ -23,8 +25,9 @@ public class Index extends HttpServlet {
 	@Override
 	public void doGet( HttpServletRequest request, HttpServletResponse response )
 			throws ServletException, IOException {
-		String[] listpays = {"France","Royaume-Uni","USA","Russie","Yemen"};
-		request.setAttribute("listpays",listpays);
+		DatabaseManager db = new DatabaseManager();
+		HashMap<String,Integer> hm = db.getLocales();
+		request.setAttribute("locales",hm);
 
 		if(ajoutCookieUserID(request.getCookies()) != null) {
 			response.addCookie(ajoutCookieUserID(request.getCookies()));

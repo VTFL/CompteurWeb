@@ -120,7 +120,7 @@ public class DatabaseManager {
         HashMap<String,Integer> ret = new HashMap<>();
         try{
             Statement stmt = conn.createStatement();
-            ResultSet resultat = stmt.executeQuery( "SELECT * FROM compteurweb.compteurs" );
+            ResultSet resultat = stmt.executeQuery( "SELECT * FROM compteurweb.locales" );
             String Pays ="";
             int GMT =0;
             while ( resultat.next() ) {

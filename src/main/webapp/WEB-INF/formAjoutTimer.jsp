@@ -1,4 +1,5 @@
-<%--
+<%@ page import="java.util.HashMap" %>
+<%@ page import="java.util.Map" %><%--
   Created by IntelliJ IDEA.
   User: Lucas-PC
   Date: 05/11/2016
@@ -18,6 +19,7 @@
             </thead>
             <tbody>
 
+
                 <form method="post" action="Jesus.jsp">
 
                     <tr>
@@ -34,12 +36,20 @@
                         </td>
                         <td>
                             <select id="langue" class="timerForm" name="langue">
+
+
                                 <%
-                                    String[] listpays = (String[]) request.getAttribute("listpays");
-                                    for(String pays : listpays){
-                                        out.println("<option value="+pays+">"+pays+"</option>");
+                                    HashMap<String,Integer> locales = (HashMap<String,Integer>) request.getAttribute("locales");
+
+                                    for (Map.Entry<String, Integer> entry : locales.entrySet()) {
+
+                                        if(entry.getValue()>=0)
+                                            out.println("<option value=\"" + entry.getKey() + "\">" + entry.getKey() + " (GMT+" + entry.getValue()+")</option>");
+                                        else
+                                            out.println("<option value=\"" + entry.getKey() + "\">" + entry.getKey() + " (GMT" + entry.getValue()+")</option>");
                                     }
                                 %>
+
                             </select>
                         </td>
 
@@ -61,5 +71,6 @@
             </tbody>
 
         </table>
+
     </div>
 
