@@ -21,7 +21,6 @@ public class DatabaseManager {
                     ("jdbc:mysql://defortet.ddns.net:3306/compteurweb", "vtfl", "vtfl");
         } catch (Exception e) {
             e.printStackTrace();
-
         }
         //conn.close();
     }
@@ -30,18 +29,18 @@ public class DatabaseManager {
         ArrayList<Compteur> ret = new ArrayList<>();
         try{
             Statement stmt = conn.createStatement();
-            ResultSet resultat = stmt.executeQuery( "SELECT id,titre,gmt,date  FROM compteurs WHERE idSession="+idSession+";" );
+            ResultSet resultat = stmt.executeQuery( "SELECT id,titre,Pays,date  FROM compteurs WHERE idSession="+idSession+";" );
             int id=0;
             String titre="";
-            int gmt=0;
+            String pays="";
             String date="";
             Compteur c;
             while ( resultat.next() ) {
                 id = resultat.getInt("id");
                 titre = resultat.getString( "titre" );
-                gmt = resultat.getInt( "gmt" );
+                pays = resultat.getString( "Pays" );
                 date = resultat.getString("date");
-                c = new Compteur(id,titre,gmt,date,idSession);
+                c = new Compteur(id,titre,pays,date,idSession);
                 ret.add(c);
             }
             stmt.close();
@@ -54,11 +53,11 @@ public class DatabaseManager {
         try{
             Statement stmt = conn.createStatement();
             String titre=c.getTitre();
-            int gmt=c.getGmt();
+            String pays=c.getPays();
             String date=c.getDate();
             int idSession = c.getIdSession();
             //INSERT INTO `compteurs`(`titre`, `gmt`, `date`, `idSession`) VALUES ('testTitre',1,'2010/01/22',5)
-            myBool = stmt.execute( "INSERT INTO `compteurs`(`titre`,`gmt`,`date`,`idSession`) VALUES ('"+titre+ "', '"+gmt+"' , '"+date+"' , '"+idSession+"');");
+            myBool = stmt.execute( "INSERT INTO `compteurs`(`titre`,`Pays`,`date`,`idSession`) VALUES ('"+titre+ "', '"+pays+"' , '"+date+"' , '"+idSession+"');");
             stmt.close();
         }catch(Exception e){e.printStackTrace();}
         return myBool;
@@ -79,10 +78,10 @@ public class DatabaseManager {
         try{
             Statement stmt = conn.createStatement();
             String titre=c.getTitre();
-            int gmt=c.getGmt();
+            String pays=c.getPays();
             String date=c.getDate();
             int idSession = c.getIdSession();
-            myBool = stmt.execute( "UPDATE `compteurs` SET `titre` = '"+titre+"' ,`gmt` = "+gmt+",`date` = '"+date+"' WHERE id = "+c.getId()+" ;");
+            myBool = stmt.execute( "UPDATE `compteurs` SET `titre` = '"+titre+"' ,`Pays` = "+pays+",`date` = '"+date+"' WHERE id = "+c.getId()+" ;");
 
             stmt.close();
         }catch(Exception e){e.printStackTrace();}

@@ -9,15 +9,15 @@ import java.text.SimpleDateFormat;
 public class Compteur {
     private int id;
     private String titre;
-    private int gmt;
+    private String pays;
     private String date;
     private int idSession;
     private String majCompteur;
 
-    public Compteur(int id, String titre, int gmt, String date, int idSession) {
+    public Compteur(int id, String titre, String pays, String date, int idSession) {
         this.id =id;
         this.titre = titre;
-        this.gmt = gmt;
+        this.pays = pays;
         this.date = date;
         this.idSession = idSession;
         this.majCompteur=null;
@@ -47,12 +47,12 @@ public class Compteur {
         this.titre = titre;
     }
 
-    public int getGmt() {
-        return gmt;
+    public String getPays() {
+        return pays;
     }
 
-    public void setGmt(int gmt) {
-        this.gmt = gmt;
+    public void setPays(int gmt) {
+        this.pays = pays;
     }
 
     public String getDate() {
@@ -97,7 +97,7 @@ public class Compteur {
         return "Compteur{" +
                 "id=" + id +
                 ", titre='" + titre + '\'' +
-                ", gmt=" + gmt +
+                ", pays=" + pays +
                 ", date=" + date +
                 ", idSession=" + idSession +
                 '}';

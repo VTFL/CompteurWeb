@@ -16,7 +16,7 @@ public class TestSuppressionCompteur {
     @Before
     public void insertion(){
         DatabaseManager db = new DatabaseManager();
-        Compteur c = new Compteur(-1,"monTitreDeTest",1,"08/11/2016 17:30:00",9999);
+        Compteur c = new Compteur(-1,"monTitreDeTest","France","08/11/2016 17:30:00",9999);
         db.ajouterCompteur(c);
     }
     @Test
