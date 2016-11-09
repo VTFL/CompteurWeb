@@ -46,7 +46,7 @@ public class CreateTimer {
 
                 dbm.ajouterCompteur(new Compteur(0,data.getString("titre"),
                         data.getString("pays"),data.getString("echeance"),data.getInt("idSession")));
-                        .toString();
+                        //.toString();
                 /*if(isValidFormat("dd/MM/yyyy kk:mm:ss ",newDateFormat))
                     dbm.ajouterCompteur(new Compteur(0,data.getString("titre"),
                             data.getString("pays"),newDateFormat,data.getInt("idSession")));*/
