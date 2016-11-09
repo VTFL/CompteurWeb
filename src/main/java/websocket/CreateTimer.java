@@ -14,6 +14,7 @@ import javax.websocket.OnOpen;
 import javax.websocket.Session;
 import javax.websocket.server.ServerEndpoint;
 import java.io.IOException;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -45,6 +46,13 @@ public class CreateTimer {
 
                 dbm.ajouterCompteur(new Compteur(0,data.getString("titre"),
                         data.getString("pays"),data.getString("echeance"),data.getInt("idSession")));
+                        .toString();
+                /*if(isValidFormat("dd/MM/yyyy kk:mm:ss ",newDateFormat))
+                    dbm.ajouterCompteur(new Compteur(0,data.getString("titre"),
+                            data.getString("pays"),newDateFormat,data.getInt("idSession")));*/
+
+
+
                 session.getId();
             }
         } catch (Exception e) {
@@ -102,5 +110,18 @@ public class CreateTimer {
         } catch (Exception e) {
             System.out.println(e);
         }
+    }
+    public static boolean isValidFormat(String format, String value) {
+        Date date = null;
+        try {
+            SimpleDateFormat sdf = new SimpleDateFormat(format);
+            date = sdf.parse(value);
+            if (!value.equals(sdf.format(date))) {
+                date = null;
+            }
+        } catch (ParseException ex) {
+            System.out.println(ex);
+        }
+        return date != null;
     }
 }
