@@ -8,8 +8,9 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <div class="row">
     <div class="panel">
-
-        TimeHere
+        <div class="row" style="text-align: center;font-size: 25px">
+            Liste des compteurs
+        </div>
         <span id="testTimer1"></span>
     </div>
 </div>

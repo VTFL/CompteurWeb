@@ -21,15 +21,22 @@ function connect() {
         var testJson = JSON.parse(event.data);
         var string='';
         for(var i =0;i< testJson.length;i++) {
-            string += "<br/>";
-            string += "ID          : "+testJson[i].id + "<br/>";
-            string += "Titre       : "+testJson[i].titre + "<br/>";
-            string += "Pays         : "+testJson[i].pays + "<br/>";
-            string += "Echéance    : "+testJson[i].date + "<br/>";
-            string += "TPS restant : "+testJson[i].majCompteur + "<br/><br/>";
+
+            string += "<div class=\"col-md-6\" style='margin-top: 10px;'>";
+            string += "<div class=\"compteur\">";
+            string += "<div class='nomCompteur' >";
+            //string += "ID          : "+testJson[i].id + "<br/>";
+            string += testJson[i].titre ;
+            string += "</div>";
+            string += "<b>Pays</b>        : "+testJson[i].pays + "<br/>";
+            string += "<b>Ech&eacute;ance</b>    : "+testJson[i].date + "<br/>";
+            string += "<b>TPS restant</b> : "+testJson[i].majCompteur + "<br/><br/>";
+            string += "<div style='text-align: center'>";
             string += "<button type=\"button\" class=\"btn btn-info\">Modifier</button> ";
             string += "<button type=\"button\" class=\"btn btn-danger\">Supprimer</button><br/><br/>"
-            string += "------------------------------------------------------------";
+            string += "</div>";
+            string += "</div>";
+            string += "</div>";
         }
         test.innerHTML= string;
     };

@@ -4,6 +4,17 @@
 .submitButton{
     text-align: center;
 }
+.compteur {
+    border-radius: 20px;
+    background-color: #F5F5F5;
+    padding-left: 15px;
+}
+.nomCompteur {
+    font-size: 20px;
+    text-align: center;
+    font-weight: bold;
+    margin-bottom: 12px;
+}
 #error-message{
     color: red;
 }
