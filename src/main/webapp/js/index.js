@@ -26,7 +26,7 @@ function connect() {
             string += "<div class=\"compteur\">";
             string += "<div class='nomCompteur' >";
             //string += "ID          : "+testJson[i].id + "<br/>";
-            string += testJson[i].titre ;
+            string += "<h2>"+testJson[i].titre+"</h2>";
             string += "</div>";
             string += "<b>Pays</b>        : "+testJson[i].pays + "<br/>";
             string += "<b>Ech&eacute;ance</b>    : "+testJson[i].date + "<br/>";

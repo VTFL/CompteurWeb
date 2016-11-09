@@ -90,9 +90,6 @@ public class Compteur {
 		ZonedDateTime d2 = ZonedDateTime.now(ZoneOffset.UTC );
 		LocalDateTime res=null;
 
-		System.out.println(d2);
-		System.out.println(d1);
-
 		d2 = d2.plusHours(gmt);
 
 		res = d1.minusSeconds(d2.getSecond());
