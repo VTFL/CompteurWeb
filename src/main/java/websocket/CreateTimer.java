@@ -16,6 +16,7 @@ import javax.websocket.server.ServerEndpoint;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.Set;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
@@ -51,9 +52,10 @@ public class CreateTimer {
             }
         } catch (Exception e) {
             try {
+                System.out.println(e);
                 session.close();
             } catch (IOException e1) {
-                // Ignore
+                System.out.println(e1);
             }
         }
     }
