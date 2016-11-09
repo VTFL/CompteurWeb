@@ -1,23 +1,12 @@
 /**
  * Created by Lucas-PC on 02/11/2016.
  */
-import db.DatabaseManager;
-
-import java.io.IOException;
-
-
 import javax.servlet.ServletException;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
-import java.io.*;
-import javax.servlet.*;
-import javax.servlet.http.*;
 import java.io.IOException;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Scanner;
 
 public class Index extends HttpServlet {
 
@@ -25,9 +14,8 @@ public class Index extends HttpServlet {
 	@Override
 	public void doGet( HttpServletRequest request, HttpServletResponse response )
 			throws ServletException, IOException {
-		DatabaseManager db = new DatabaseManager();
-		HashMap<String,Integer> hm = db.getLocales();
-		request.setAttribute("locales",hm);
+		String[] listpays = {"France","Royaume-Uni","USA","Russie","Yemen"};
+		request.setAttribute("listpays",listpays);
 
 		if(ajoutCookieUserID(request.getCookies()) != null) {
 			response.addCookie(ajoutCookieUserID(request.getCookies()));
@@ -59,6 +47,7 @@ public class Index extends HttpServlet {
 		}
 		if(!cookieExist){
 			c = new Cookie("userID",""+userID);
+			c.setMaxAge(60 * 60 * 24 * 365);
 			++userID;
 			return c;
 		}
