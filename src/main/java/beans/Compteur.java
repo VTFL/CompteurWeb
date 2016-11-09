@@ -15,7 +15,6 @@ public class Compteur {
     private String majCompteur;
 
     public Compteur(int id, String titre, int gmt, String date, int idSession) {
-
         this.id =id;
         this.titre = titre;
         this.gmt = gmt;
