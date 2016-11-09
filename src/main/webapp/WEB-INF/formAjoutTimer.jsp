@@ -44,9 +44,9 @@
                                     for (Map.Entry<String, Integer> entry : locales.entrySet()) {
 
                                         if(entry.getValue()>=0)
-                                            out.println("<option value=\"" + entry.getKey() + "\">" + entry.getKey() + " (GMT+" + entry.getValue()+")</option>");
+                                            out.println("<option value=\"" + entry.getValue() + "\">" + entry.getKey() + " (GMT+" + entry.getValue()+")</option>");
                                         else
-                                            out.println("<option value=\"" + entry.getKey() + "\">" + entry.getKey() + " (GMT" + entry.getValue()+")</option>");
+                                            out.println("<option value=\"" + entry.getValue() + "\">" + entry.getKey() + " (GMT" + entry.getValue()+")</option>");
                                     }
                                 %>
 
