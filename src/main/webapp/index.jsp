@@ -108,7 +108,7 @@
             }
             if(valid){
                 var iduser = getCookie("userID")
-                var data = {userID : iduser,langue : $("#langue").val() ,titre : $("#titre").val(),echeance : $("#echeance").val()};
+                var data = {idSession : iduser,gmt : $("#langue").val() ,titre : $("#titre").val(),date : $("#echeance").val()};
                 ws.send(JSON.stringify(data))
             }
 

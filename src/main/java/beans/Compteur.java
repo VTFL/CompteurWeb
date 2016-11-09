@@ -16,7 +16,7 @@ public class Compteur {
 
     public Compteur(int id, String titre, int gmt, String date, int idSession) {
 
-        this.id = id;
+        this.id =id;
         this.titre = titre;
         this.gmt = gmt;
         this.date = date;

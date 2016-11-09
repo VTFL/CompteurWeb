@@ -34,17 +34,21 @@ public class CreateTimer {
     public void onMessage(Session session, String jsonMessage) {
         try {
             if (session.isOpen()) {
+
                 JSONObject data = new JSONObject(jsonMessage);
-                dbm.ajouterCompteur(new Compteur(23,"Gestion de projet",1,"10/11/2016 08:00:00",0));
-				session.getBasicRemote().sendText(data.getString("userID"));
-                session.getId();
+
+				dbm.ajouterCompteur(new Compteur(0,data.getString("titre")
+						,Integer.parseInt(data.getString("gmt"))
+						,data.getString("date")
+						,Integer.parseInt(data.getString("idSession"))));
             }
         } catch (Exception e) {
             try {
+				System.out.println(e);
                 session.close();
             } catch (IOException e1) {
-                // Ignore
-            }
+				System.out.println(e1);
+			}
         }
     }
     //faire en fonction des cookies
