@@ -39,7 +39,18 @@
         };
         ws.onmessage = function (event) {
             var test = document.getElementById("testTimer1");
-            test.innerHTML=event.data;
+            var testJson = JSON.parse(event.data);
+            var string='';
+            for(var i =0;i< testJson.length;i++) {
+                string += "<br/>";
+                string += "ID          : "+testJson[i].id + "<br/>";
+                string += "Titre       : "+testJson[i].titre + "<br/>";
+                string += "GMT         : "+testJson[i].gmt + "<br/>";
+                string += "Echéance    : "+testJson[i].date + "<br/>";
+                string += "TPS restant : "+testJson[i].majCompteur + "<br/>";
+                string += "------------------------------------------------------------";
+            }
+            test.innerHTML= string;
         };
         ws.onclose = function (event) {
         };

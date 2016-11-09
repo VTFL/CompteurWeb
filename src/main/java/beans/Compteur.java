@@ -1,6 +1,5 @@
 package beans;
 
-import java.sql.Date;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 
@@ -25,8 +24,14 @@ public class Compteur {
         this.majCompteur=null;
     }
 
-    public String getMajCompteur(){ return majCompteur;}
-    public void setMajCompteur(String s){this.majCompteur=s;}
+    public String getMajCompteur() {
+        return majCompteur;
+    }
+
+    public void setMajCompteur(String maj) {
+        this.majCompteur = maj;
+    }
+
     public int getId() {
         return id;
     }
@@ -67,12 +72,11 @@ public class Compteur {
         this.idSession = idSession;
     }
 
-    private String diff(){
-        String theDate = "08/11/2016 17:30:00";
+    public String diff(){
         String pattern = "dd/MM/yyyy HH:mm:ss";
         java.util.Date d2 = null;
         try {
-            d2 = new SimpleDateFormat(pattern).parse(theDate);
+            d2 = new SimpleDateFormat(pattern).parse(date);
         } catch (ParseException e) {
             //return "server error...";
         }
@@ -97,7 +101,6 @@ public class Compteur {
                 ", gmt=" + gmt +
                 ", date=" + date +
                 ", idSession=" + idSession +
-                ", majCompteur=" + majCompteur +
                 '}';
     }
 }
