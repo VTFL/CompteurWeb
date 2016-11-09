@@ -24,7 +24,7 @@ function connect() {
             string += "<br/>";
             string += "ID          : "+testJson[i].id + "<br/>";
             string += "Titre       : "+testJson[i].titre + "<br/>";
-            string += "GMT         : "+testJson[i].gmt + "<br/>";
+            string += "Pays         : "+testJson[i].pays + "<br/>";
             string += "Echéance    : "+testJson[i].date + "<br/>";
             string += "TPS restant : "+testJson[i].majCompteur + "<br/><br/>";
             string += "<button type=\"button\" class=\"btn btn-info\">Modifier</button> ";
