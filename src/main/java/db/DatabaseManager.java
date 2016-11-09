@@ -29,18 +29,21 @@ public class DatabaseManager {
         ArrayList<Compteur> ret = new ArrayList<>();
         try{
             Statement stmt = conn.createStatement();
-            ResultSet resultat = stmt.executeQuery( "SELECT id,titre,Pays,date  FROM compteurs WHERE idSession="+idSession+";" );
+            ResultSet resultat = stmt.executeQuery( "SELECT id,titre,Pays,date,gmt  FROM compteurs JOIN locales USING(Pays) WHERE idSession="+idSession+";" );
             int id=0;
             String titre="";
             String pays="";
             String date="";
+            int gmt=0;
             Compteur c;
             while ( resultat.next() ) {
                 id = resultat.getInt("id");
                 titre = resultat.getString( "titre" );
                 pays = resultat.getString( "Pays" );
                 date = resultat.getString("date");
+                gmt=resultat.getInt("gmt");
                 c = new Compteur(id,titre,pays,date,idSession);
+                c.setGmt(gmt);
                 ret.add(c);
             }
             stmt.close();

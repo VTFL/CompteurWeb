@@ -38,16 +38,13 @@ public class CreateTimer {
             if (session.isOpen()) {
                JSONObject data = new JSONObject(jsonMessage);
 
-                SimpleDateFormat sdf1 = new SimpleDateFormat("dd/MM/yyyy kk:mm:ss ");
+                /*SimpleDateFormat sdf1 = new SimpleDateFormat("dd/MM/yyyy kk:mm:ss ");
                 SimpleDateFormat sdf2 = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm");
                 String newDateFormat = sdf1.format(sdf2.parse(data.getString("echeance")))
-                        .toString();
+                        .toString();*/
 
                 dbm.ajouterCompteur(new Compteur(0,data.getString("titre"),
-                        data.getString("pays"),newDateFormat,data.getInt("idSession")));
-
-
-
+                        data.getString("pays"),data.getString("echeance"),data.getInt("idSession")));
                 session.getId();
             }
         } catch (Exception e) {
@@ -102,8 +99,8 @@ public class CreateTimer {
                   .toString().split(";")[0].substring(session.getUserProperties().get("cookie")
                   .toString().split(";")[0].indexOf("=")+1));
 */
-        } catch (IOException ioe) {
-            System.out.println(ioe.getMessage());
+        } catch (Exception e) {
+            System.out.println(e);
         }
     }
 }
