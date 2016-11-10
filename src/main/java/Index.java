@@ -44,17 +44,23 @@ public class Index extends HttpServlet {
     public Cookie ajoutCookieUserID(Cookie[] cookies){
         boolean cookieExist = false;
         Cookie c=null;
-        for(Cookie cookie : cookies){
-            if(cookie.getName().equals("userID")){
-                cookieExist = true;
-            }
-        }
-        if(!cookieExist){
-            c = new Cookie("userID",""+userID);
+        if(cookies == null ||cookies.length == 0){
+            c = new Cookie("userID", "" + userID);
             c.setMaxAge(60 * 60 * 24 * 365);
             ++userID;
-            return c;
+        }else{
+            for (Cookie cookie : cookies) {
+                if (cookie.getName().equals("userID")) {
+                    cookieExist = true;
+                }
+            }
+            if (!cookieExist) {
+                c = new Cookie("userID", "" + userID);
+                c.setMaxAge(60 * 60 * 24);
+                ++userID;
+            }
         }
+
         return c;
     }
 
