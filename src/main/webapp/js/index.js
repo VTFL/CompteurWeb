@@ -23,7 +23,11 @@ function connect() {
         for(var i =0;i< testJson.length;i++) {
 
             string += "<div class=\"col-md-6 col-sm-6\">";
-            string += "<div class=\"divSpecial\">";
+            if(testJson[i].majCompteur=="------------------- FIN -------------------------")
+                string += "<div class=\"divCompteurFIN\">";
+            else
+                string += "<div class=\"divSpecial\">";
+
             string += "<div class='nomCompteur' >";
             //string += "ID          : "+testJson[i].id + "<br/>";
             string += "<b><h2>"+testJson[i].titre+"</h2></b>";
@@ -33,17 +37,26 @@ function connect() {
             string += "<b>TPS restant</b> : "+testJson[i].majCompteur + "<br/><br/>";
             string += "<div style='text-align: center'>";
             string += "<button type=\"button\" class=\"btn btn-info\">Modifier</button> ";
-            string += "<button type=\"button\" class=\"btn btn-danger\">Supprimer</button><br/><br/>"
+            string += '<button type="button" class="btn btn-danger" onclick="supprimer(\''+testJson[i].id+'\',\''+testJson[i].titre+'\')">Supprimer</button><br/><br/>'
             string += "</div>";
             string += "</div>";
             string += "</div>";
         }
         test.innerHTML= string;
+
+
     };
     ws.onclose = function (event) {
     };
-}
 
+}
+function supprimer(id,titre) {
+    var data = {id : id
+        ,action : "remove"
+    };
+    alert("Suppression du compteur "+titre);
+    ws.send(JSON.stringify(data));
+}
 
 $(function() {
     connect()
@@ -94,7 +107,12 @@ $(function() {
         }
         if(valid){
             var iduser = getCookie("userID")
-            var data = {idSession : iduser,pays : $("#langue").val() ,titre : $("#titre").val(),echeance : $("#echeance").val()};
+            var data = {idSession : iduser
+                ,pays : $("#langue").val()
+                ,titre : $("#titre").val()
+                ,echeance : $("#echeance").val()
+                ,action : "add"
+            };
             ws.send(JSON.stringify(data))
         }
 

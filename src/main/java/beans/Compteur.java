@@ -1,9 +1,8 @@
 package beans;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.time.*;
-import java.time.format.DateTimeFormatter;
+import java.time.LocalDateTime;
+import java.time.ZoneOffset;
+import java.time.ZonedDateTime;
 
 /**
  * Created by thiba on 08/11/2016.
@@ -24,7 +23,7 @@ public class Compteur {
         this.date = date;
         this.gmt=0;
         this.idSession = idSession;
-        this.majCompteur=null;
+        this.majCompteur="0";
     }
 
     public String getMajCompteur() {
@@ -103,7 +102,10 @@ public class Compteur {
 		long diffHours = res.getHour();
 		long diffDays = res.getDayOfYear() + res.getYear()*365;
 
-        return diffDays+" jour(s) "+diffHours+" heure(s) "+diffMinutes+" minute(s) "+diffSeconds+" seconde(s)";
+        if(diffSeconds<0||diffMinutes<0||diffHours<0||diffDays<0)
+            return "------------------- FIN -------------------------";
+        else
+            return diffDays+" jour(s) "+diffHours+" heure(s) "+diffMinutes+" minute(s) "+diffSeconds+" seconde(s)";
 
     }
 

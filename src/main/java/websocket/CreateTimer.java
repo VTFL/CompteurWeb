@@ -44,12 +44,14 @@ public class CreateTimer {
                 SimpleDateFormat sdf2 = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm");
                 String newDateFormat = sdf1.format(sdf2.parse(data.getString("echeance")))
                         .toString();*/
-
-                dbm.ajouterCompteur(new Compteur(0,
-						data.getString("titre"),
-                        data.getString("pays"),
-						data.getString("echeance"),
-						data.getInt("idSession")));
+                if(data.getString("action").equals("add"))
+                    dbm.ajouterCompteur(new Compteur(0,
+                            data.getString("titre"),
+                            data.getString("pays"),
+                            data.getString("echeance"),
+                            data.getInt("idSession")));
+                else if(data.getString("action").equals("remove"))
+                    dbm.supprimerCompteur(data.getInt("id"));
 
                         //.toString();
                 /*if(isValidFormat("dd/MM/yyyy kk:mm:ss ",newDateFormat))
