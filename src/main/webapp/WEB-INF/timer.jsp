@@ -6,11 +6,11 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<div class="row">
+
     <div class="panel">
-        <div class="row" style="text-align: center;font-size: 25px">
+        <div class="row" style="text-align: center;font-size: 25px; margin-top: 15px;">
             Liste des compteurs
         </div>
         <span id="testTimer1"></span>
     </div>
-</div>
+

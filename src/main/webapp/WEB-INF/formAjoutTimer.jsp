@@ -8,7 +8,10 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
-<div class="well">
+<div class="divSpecial">
+    <div style="text-align: center;font-size: 25px;">
+       Ajouter un compteur
+    </div>
         <table class="table">
             <thead>
             <tr>

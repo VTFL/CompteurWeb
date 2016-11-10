@@ -22,8 +22,8 @@ function connect() {
         var string='';
         for(var i =0;i< testJson.length;i++) {
 
-            string += "<div class=\"col-md-6\" style='margin-top: 10px;'>";
-            string += "<div class=\"compteur\">";
+            string += "<div class=\"col-md-6 col-sm-6\">";
+            string += "<div class=\"divSpecial\">";
             string += "<div class='nomCompteur' >";
             //string += "ID          : "+testJson[i].id + "<br/>";
             string += "<h2>"+testJson[i].titre+"</h2>";
