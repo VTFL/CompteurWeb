@@ -9,15 +9,13 @@ import com.google.gson.Gson;
 import db.DatabaseManager;
 import org.json.JSONObject;
 
+import javax.websocket.OnClose;
 import javax.websocket.OnMessage;
 import javax.websocket.OnOpen;
 import javax.websocket.Session;
 import javax.websocket.server.ServerEndpoint;
 import java.io.IOException;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.Set;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
@@ -62,13 +60,19 @@ public class CreateTimer {
         } catch (Exception e) {
             try {
                 System.out.println(e);
-                session.close();
+                if (session.isOpen())
+                    session.close();
             } catch (IOException e1) {
                 System.out.println(e1);
             }
         }
     }
+    @OnClose
+    public void onClose(final Session session) {
+       System.out.println("Close connection for client: "+
+                session.getId());
 
+    }
     @OnOpen
     public void showTimer(Session session){
         dbm= new DatabaseManager();
@@ -82,50 +86,38 @@ public class CreateTimer {
 
         ArrayList<Compteur> lst_compteur = new ArrayList<>();
         try{
-            Gson gson = new Gson();
-            //session.getUserProperties().get("cookie")[0];
-            String cookies[] =session.getUserProperties().get("cookie")
-                    .toString().split(";");
-            String userID="";
-            for(int i =0;i< cookies.length;i++){
-                if(cookies[i].contains("userID"))
-                    userID=cookies[i];
-            }
-            userID=userID.substring(userID.indexOf("=")+1);
-            if(userID.contains("]"))
-                userID=userID.substring(userID.indexOf("=")+1,userID.length()-1);
-            else
-                userID=userID.substring(userID.indexOf("=")+1);
-            lst_compteur=dbm.getCompteurs(Integer.parseInt(userID));
-            Compteur c ;
+            if (session.isOpen()) {
+                Gson gson = new Gson();
+                //session.getUserProperties().get("cookie")[0];
+                String cookies[] = session.getUserProperties().get("cookie")
+                        .toString().split(";");
+                String userID = "";
+                for (int i = 0; i < cookies.length; i++) {
+                    if (cookies[i].contains("userID"))
+                        userID = cookies[i];
+                }
+                userID = userID.substring(userID.indexOf("=") + 1);
+                if (userID.contains("]"))
+                    userID = userID.substring(userID.indexOf("=") + 1, userID.length() - 1);
+                else
+                    userID = userID.substring(userID.indexOf("=") + 1);
+                lst_compteur = dbm.getCompteurs(Integer.parseInt(userID));
+                Compteur c;
 
-            for(int i = 0; i<lst_compteur.size();i++){
-                c=lst_compteur.get(i);
-                c.setMajCompteur(c.diff());
+                for (int i = 0; i < lst_compteur.size(); i++) {
+                    c = lst_compteur.get(i);
+                    c.setMajCompteur(c.diff());
+                }
+                String json = gson.toJson(lst_compteur);
+                session.getBasicRemote().sendText(json);
+            }else{
+                if (session.isOpen())
+                    session.close();
             }
-            String json = gson.toJson(lst_compteur);
-            session.getBasicRemote().sendText(json);
 
-          /*  ----
-          session.getBasicRemote().sendText(session.getUserProperties().get("cookie")
-                  .toString().split(";")[0].substring(session.getUserProperties().get("cookie")
-                  .toString().split(";")[0].indexOf("=")+1));
-*/
         } catch (Exception e) {
             System.out.println(e);
         }
     }
-    public static boolean isValidFormat(String format, String value) {
-        Date date = null;
-        try {
-            SimpleDateFormat sdf = new SimpleDateFormat(format);
-            date = sdf.parse(value);
-            if (!value.equals(sdf.format(date))) {
-                date = null;
-            }
-        } catch (ParseException ex) {
-            System.out.println(ex);
-        }
-        return date != null;
-    }
+
 }
