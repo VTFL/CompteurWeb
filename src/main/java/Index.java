@@ -46,7 +46,7 @@ public class Index extends HttpServlet {
         Cookie c=null;
         if(cookies == null ||cookies.length == 0){
             c = new Cookie("userID", "" + userID);
-            c.setMaxAge(60 * 60 * 24 * 365);
+            c.setMaxAge(60 * 60 * 24);
             ++userID;
         }else{
             for (Cookie cookie : cookies) {
