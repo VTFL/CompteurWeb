@@ -55,14 +55,13 @@ public class DatabaseManager {
         Compteur ret = null;
         try{
             Statement stmt = conn.createStatement();
-            ResultSet resultat = stmt.executeQuery( "SELECT titre,Pays,date,gmt,idSession  FROM compteurs WHERE id="+idCompteur+";" );
-
+            ResultSet resultat = stmt.executeQuery( "SELECT titre,Pays,date,gmt,idSession FROM compteurs JOIN locales USING(Pays) WHERE id="+idCompteur+";" );
             String titre="";
             String pays="";
             String date="";
             int gmt=0;
             int idSession=0;
-
+            resultat.next();
             titre = resultat.getString( "titre" );
             pays = resultat.getString( "Pays" );
             date = resultat.getString("date");
@@ -238,6 +237,5 @@ public class DatabaseManager {
 
     public static void main(String[] args) {
         DatabaseManager db = new DatabaseManager();
-        db.insererLocales();
     }
 }

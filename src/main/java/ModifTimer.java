@@ -25,7 +25,7 @@ public class ModifTimer extends HttpServlet {
         request.setAttribute("compteur",c);
 
         this.getServletContext()
-                .getRequestDispatcher( "/modifForm.jsp" )
+                .getRequestDispatcher( "/WEB-INF/modifForm.jsp" )
                 .forward( request, response );
     }
 }
