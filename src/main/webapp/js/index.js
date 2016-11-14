@@ -36,8 +36,12 @@ function connect() {
             string += "<b>Ech&eacute;ance</b>    : "+testJson[i].date + "<br/>";
             string += "<b>TPS restant</b> : "+testJson[i].majCompteur + "<br/><br/>";
             string += "<div style='text-align: center'>";
-            string += "<button type=\"button\" class=\"btn btn-info\">Modifier</button> ";
-            string += '<button type="button" class="btn btn-danger" onclick="supprimer(\''+testJson[i].id+'\',\''+testJson[i].titre+'\')">Supprimer</button><br/><br/>'
+            string += "<form method=\"post\" action=\"/CompteurWeb/modifTimer\">";
+            string += "<input type=\"hidden\" name=\"id\" value=\""+ testJson[i].id +"\">";
+            string += "<button id=\"modif\" name=\"modif\" type=\"submit\" class=\"btn btn-info\">Modifier</button> ";
+            string += "</form>";
+            string += "<button id=\"supp\" name=\"supp\" type=\"button\" class=\"btn btn-danger\" " +
+                "onclick=\"supprimer("+testJson[i].id+")\">Supprimer</button><br/><br/>";
             string += "</div>";
             string += "</div>";
             string += "</div>";
@@ -48,14 +52,22 @@ function connect() {
     };
     ws.onclose = function (event) {
     };
-
 }
-function supprimer(id,titre) {
-    var data = {id : id
-        ,action : "remove"
-    };
-    alert("Suppression du compteur "+titre);
-    ws.send(JSON.stringify(data));
+
+function getCookie(cname) {
+
+    var name = cname + "=";
+    var ca = document.cookie.split(';');
+    for(var i = 0; i < ca.length; i++) {
+        var c = ca[i];
+        while (c.charAt(0) == ' ') {
+            c = c.substring(1);
+        }
+        if (c.indexOf(name) == 0) {
+            return c.substring(name.length, c.length);
+        }
+    }
+    return "";
 }
 
 $(function() {
@@ -90,21 +102,6 @@ $(function() {
             $("#error-message").text("L'échéance ne peut pas être dans le passé");
             valid = false
         }
-        function getCookie(cname) {
-
-            var name = cname + "=";
-            var ca = document.cookie.split(';');
-            for(var i = 0; i < ca.length; i++) {
-                var c = ca[i];
-                while (c.charAt(0) == ' ') {
-                    c = c.substring(1);
-                }
-                if (c.indexOf(name) == 0) {
-                    return c.substring(name.length, c.length);
-                }
-            }
-            return "";
-        }
         if(valid){
             var iduser = getCookie("userID")
             var data = {idSession : iduser
@@ -118,4 +115,12 @@ $(function() {
 
         return valid
     })
+
 });
+
+function supprimer(id) {
+    var data = {id : id
+        ,action : "remove"
+    };
+    ws.send(JSON.stringify(data));
+}

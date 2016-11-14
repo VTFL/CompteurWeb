@@ -51,6 +51,31 @@ public class DatabaseManager {
         return ret;
     }
 
+    public Compteur getCompteur(int idCompteur){
+        Compteur ret = null;
+        try{
+            Statement stmt = conn.createStatement();
+            ResultSet resultat = stmt.executeQuery( "SELECT titre,Pays,date,gmt,idSession  FROM compteurs WHERE id="+idCompteur+";" );
+
+            String titre="";
+            String pays="";
+            String date="";
+            int gmt=0;
+            int idSession=0;
+
+            titre = resultat.getString( "titre" );
+            pays = resultat.getString( "Pays" );
+            date = resultat.getString("date");
+            gmt=resultat.getInt("gmt");
+            ret = new Compteur(idCompteur,titre,pays,date,idSession);
+            ret.setGmt(gmt);
+
+            stmt.close();
+        }catch(Exception e){e.printStackTrace();}
+
+        return ret;
+    }
+
     public boolean ajouterCompteur(Compteur c){
         boolean myBool = false;
         try{

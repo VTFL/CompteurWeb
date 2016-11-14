@@ -50,8 +50,11 @@ public class CreateTimer {
                             data.getString("pays"),
                             data.getString("echeance"),
                             data.getInt("idSession")));
-                else if(data.getString("action").equals("remove"))
+                else if(data.getString("action").equals("remove")) {
+
                     dbm.supprimerCompteur(data.getInt("id"));
+
+                }
 
                         //.toString();
                 /*if(isValidFormat("dd/MM/yyyy kk:mm:ss ",newDateFormat))

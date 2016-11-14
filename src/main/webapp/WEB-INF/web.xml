@@ -9,9 +9,17 @@
     <servlet-name>index</servlet-name>
     <servlet-class>Index</servlet-class>
   </servlet>
+  <servlet>
+    <servlet-name>modif</servlet-name>
+    <servlet-class>ModifTimer</servlet-class>
+  </servlet>
   <servlet-mapping>
     <servlet-name>index</servlet-name>
     <url-pattern>/index</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>modif</servlet-name>
+    <url-pattern>/modifTimer</url-pattern>
   </servlet-mapping>
 </web-app>
 
