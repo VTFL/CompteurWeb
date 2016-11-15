@@ -19,6 +19,21 @@
     </div>
 </div>
 
+<div class="container">
+    <div class="row">
+        <hr>
+        <div class="col-lg-12">
+            <div class="col-md-8">
+                <a href="http://pigne.org/teaching/javawebapptools/lab/WebAppLab">TP CAW</a> | <a href="https://github.com/VTFL/CompteurWeb">GitHub/CompteurWeb</a>
+            </div>
+            <div class="col-md-4">
+                <p class="muted pull-right" style="font-size:11px">Alline Florian - Defortescu Thibault - Patard Lucas - Pitel Valentin</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+
 <script type="text/javascript">
     <%@include file="js/index.js" %>
 </script>

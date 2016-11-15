@@ -14,7 +14,6 @@ function connect() {
         return;
     }
     ws.onopen = function () {
-        alert('Info: WebSocket connection opened.');
     };
     ws.onmessage = function (event) {
         var test = document.getElementById("testTimer1");
@@ -39,9 +38,9 @@ function connect() {
             string += "<form method=\"post\" action=\"/CompteurWeb/modifTimer\">";
             string += "<input type=\"hidden\" name=\"id\" value=\""+ testJson[i].id +"\">";
             string += "<button id=\"modif\" name=\"modif\" type=\"submit\" class=\"btn btn-info\">Modifier</button> ";
-            string += "</form>";
             string += "<button id=\"supp\" name=\"supp\" type=\"button\" class=\"btn btn-danger\" " +
                 "onclick=\"supprimer("+testJson[i].id+")\">Supprimer</button><br/><br/>";
+            string += "</form>";
             string += "</div>";
             string += "</div>";
             string += "</div>";
@@ -70,11 +69,29 @@ function getCookie(cname) {
     return "";
 }
 
+function refuserToucheEntree(event)
+{
+    // Compatibilité IE / Firefox
+    if(!event && window.event) {
+        event = window.event;
+    }
+    // IE
+    if(event.keyCode == 13) {
+        event.returnValue = false;
+        event.cancelBubble = true;
+    }
+    // DOM
+    if(event.which == 13) {
+        event.preventDefault();
+        event.stopPropagation();
+    }
+}
+
 $(function() {
     connect()
     /*pour le test*/
     $("#langue").val("France")
-    $("#titre").val("aaaa")
+    $("#titre").val("TitreCompteur")
     $("#echeance").val("2020-01-24T01:01")
     $("#submit").click(function(){
         var valid = true

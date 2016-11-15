@@ -108,7 +108,7 @@ public class DatabaseManager {
             String pays=c.getPays();
             String date=c.getDate();
             int idSession = c.getIdSession();
-            myBool = stmt.execute( "UPDATE `compteurs` SET `titre` = '"+titre+"' ,`Pays` = "+pays+",`date` = '"+date+"' WHERE id = "+c.getId()+" ;");
+            myBool = stmt.execute( "UPDATE `compteurs` SET `titre` = '"+titre+"' ,`Pays` = '"+pays+"',`date` = '"+date+"' WHERE id = "+c.getId()+" ;");
 
             stmt.close();
         }catch(Exception e){e.printStackTrace();}

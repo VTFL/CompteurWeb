@@ -1,5 +1,7 @@
 <%@ page import="java.util.HashMap" %>
-<%@ page import="java.util.Map" %><%--
+<%@ page import="java.util.Map" %>
+<%@ page import="java.util.TreeMap" %>
+<%@ page import="java.util.Iterator" %><%--
   Created by IntelliJ IDEA.
   User: Lucas-PC
   Date: 05/11/2016
@@ -23,14 +25,14 @@
             <tbody>
 
 
-                <form method="post" action="Jesus.jsp">
+                <form method="get">
 
                     <tr>
                         <td>
                             <b>Titre</b>
                         </td>
                         <td>
-                            <input id="titre" class="timerForm"  name="titre" type="text" />
+                            <input id="titre" class="timerForm"  name="titre" type="text" onkeypress="refuserToucheEntree(event)"/>
                         </td>
                     </tr>
                     <tr>
@@ -42,9 +44,10 @@
 
 
                                 <%
-                                    HashMap<String,Integer> locales = (HashMap<String,Integer>) request.getAttribute("locales");
+                                    Map<String, Integer> locales = (HashMap<String,Integer>) request.getAttribute("locales");
+                                    Map<String, Integer> treeMap = new TreeMap<String, Integer>(locales);
 
-                                    for (Map.Entry<String, Integer> entry : locales.entrySet()) {
+                                    for (Map.Entry<String, Integer> entry : treeMap.entrySet()) {
 
                                         if(entry.getValue()>=0)
                                             out.println("<option value=\"" + entry.getKey() + "\">" + entry.getKey() + " (GMT+" + entry.getValue()+")</option>");
@@ -67,13 +70,12 @@
                     </tr>
                     <tr class="submitButton">
                         <td colspan="2">
-                        <input id="submit" type="Button" value="Go !" class="btn btn-primary"/>
+                        <input id="submit" name ="submit"type="Button" value="Go !" class="btn btn-primary"/>
                         </td>
                     </tr>
                 </form>
             </tbody>
 
         </table>
-
     </div>
 

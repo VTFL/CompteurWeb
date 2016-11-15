@@ -1,4 +1,5 @@
-<%--
+<%@ page import="java.util.Objects" %>
+<%@ page import="beans.Compteur" %><%--
   Created by IntelliJ IDEA.
   User: Lucas-PC
   Date: 05/11/2016
