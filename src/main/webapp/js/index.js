@@ -91,8 +91,8 @@ $(function() {
     connect()
     /*pour le test*/
     $("#langue").val("France")
-    $("#titre").val("TitreCompteur")
-    $("#echeance").val("2020-01-24T01:01")
+ //   $("#titre").val("TitreCompteur")
+    $("#echeance").val("2016-12-24T00:00")
     $("#submit").click(function(){
         var valid = true
         $("#error-message").text(" ");
@@ -106,17 +106,17 @@ $(function() {
         }
         if($("#titre").val().match(/[^a-z A-Z 0-9]/)){
             $("#titre").css("border-color","red");
-            $("#error-message").text("Le titre ne peut être composé que de lettres ou de chiffres");
+            $("#error-message").text(decodeURIComponent(escape("Le titre ne peut être composé que de lettres ou de chiffres")));
             valid = false
         }
         if($("#echeance").val() === ""){
             $("#echeance").css("border-color","red");
-            $("#error-message").text("Veuillez entrer une échéance");
+            $("#error-message").text(decodeURIComponent(escape("Veuillez entrer une échéance")));
             valid = false
         }
         if(new Date($("#echeance").val()) < new Date()){
             $("#echeance").css("border-color","red");
-            $("#error-message").text("L'échéance ne peut pas être dans le passé");
+            $("#error-message").text(decodeURIComponent(escape("L'échéance ne peut pas être dans le passé")));
             valid = false
         }
         if(valid){
