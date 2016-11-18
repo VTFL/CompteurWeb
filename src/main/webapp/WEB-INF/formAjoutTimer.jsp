@@ -72,7 +72,7 @@
                     </tr>
                     <tr class="submitButton">
                         <td colspan="2">
-                        <input id="submit" name ="submit"type="Button" value="Go !" class="btn btn-primary"/>
+                        <input id="submit" name ="submit"type="Button" value="Créer Compteur" class="btn btn-primary"/>
                         </td>
                     </tr>
                 </form>
