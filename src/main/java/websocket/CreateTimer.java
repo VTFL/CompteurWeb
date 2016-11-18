@@ -17,9 +17,7 @@ import javax.websocket.server.ServerEndpoint;
 import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.Set;
+import java.util.*;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
@@ -55,6 +53,36 @@ public class CreateTimer {
                     dbm.supprimerCompteur(data.getInt("id"));
 
                 }
+                else if (data.getString("action").equals("random")) {
+
+                    Random r = new Random();
+                    final int MILLIS_IN_SECOND = 1000;
+                    final int SECONDS_IN_MINUTE = 60;
+                    final int MINUTES_IN_HOUR = 60;
+                    final int HOURS_IN_DAY = 24;
+                    final int DAYS_IN_YEAR = 365; //I know this value is more like 365.24...
+                    final long MILLISECONDS_IN_YEAR = (long) MILLIS_IN_SECOND * SECONDS_IN_MINUTE * MINUTES_IN_HOUR * HOURS_IN_DAY * DAYS_IN_YEAR;
+
+                    long number = MILLISECONDS_IN_YEAR+((long)(r.nextDouble()*(100*MILLISECONDS_IN_YEAR-MILLISECONDS_IN_YEAR)));
+
+                    Date d = new Date(System.currentTimeMillis() + number);
+                    String format = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm", Locale.FRENCH).format(d);
+
+                    String chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890";
+                    StringBuilder pass = new StringBuilder(5);
+                    for (int x = 0; x < 5; x++) {
+                        int i = (int) (Math.random() * chars.length());
+                        pass.append(chars.charAt(i));
+                    }
+
+                    dbm.ajouterCompteur(new Compteur(0,
+                            "Compteur Aléatoire : " + pass.toString(),
+                            data.getString("pays"),
+                            format,
+                            data.getInt("idSession")));
+                }
+
+                /**/
 
                         //.toString();
                 /*if(isValidFormat("dd/MM/yyyy kk:mm:ss ",newDateFormat))

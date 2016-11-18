@@ -4,10 +4,9 @@ import beans.Compteur;
 
 import java.io.InputStream;
 import java.sql.*;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Scanner;
+import java.sql.Date;
+import java.text.SimpleDateFormat;
+import java.util.*;
 
 /**
  * Created by thiba on 03/11/2016.

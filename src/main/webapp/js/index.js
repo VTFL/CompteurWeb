@@ -120,14 +120,17 @@ $(function() {
             valid = false
         }
         if(valid){
+
             var iduser = getCookie("userID")
-            var data = {idSession : iduser
-                ,pays : $("#langue").val()
-                ,titre : $("#titre").val()
-                ,echeance : $("#echeance").val()
-                ,action : "add"
-            };
-            ws.send(JSON.stringify(data))
+            var data = {
+                    idSession: iduser
+                    , pays: $("#langue").val()
+                    , titre: $("#titre").val()
+                    , echeance: $("#echeance").val()
+                    , action: "add"
+                };
+
+            ws.send(JSON.stringify(data));
         }
 
         return valid
@@ -141,3 +144,14 @@ function supprimer(id) {
     };
     ws.send(JSON.stringify(data));
 }
+
+function alea() {
+    var iduser = getCookie("userID")
+    var data = {idSession: iduser
+        ,pays : "France"
+        ,action : "random"
+    };
+    ws.send(JSON.stringify(data));
+}
+
+

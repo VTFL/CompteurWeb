@@ -70,7 +70,7 @@
                     </tr>
                     <tr class="submitButton">
                         <td colspan="2">
-                        <input id="submit" name ="submit"type="Button" value="Go !" class="btn btn-primary"/>
+                            <input id="submit" name ="submit"type="Button" value="Ajouter" class="btn btn-primary"/> <input id="random" name ="random"type="Button" value="Compteur Aléatoire" class="btn btn-primary" onclick="alea()"/>
                         </td>
                     </tr>
                 </form>
