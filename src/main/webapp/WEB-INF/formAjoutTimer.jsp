@@ -32,7 +32,8 @@
                             <b>Titre</b>
                         </td>
                         <td>
-                            <input id="titre" class="timerForm"  name="titre" type="text" onkeypress="refuserToucheEntree(event)"/>
+                            <input id="titre" class="timerForm"  name="titre" type="text" onkeypress="refuserToucheEntree(event)"
+                                   placeholder="Titre du Compteur"/>
                         </td>
                     </tr>
                     <tr>
@@ -62,9 +63,10 @@
                     </tr>
                     <tr>
                         <td>
-                            <b>Echeance</b>
+                            <b>Echeance</b><br/>
+                            <span style="font-size: 12px;color:#9e9e9e">(format date : dd/mm/yyyy)</span>
                         </td>
-                        <td>
+                        <td style="vertical-align: middle">
                             <input id="echeance" class="timerForm" name="echeance" type="datetime-local" />
                         </td>
                     </tr>
