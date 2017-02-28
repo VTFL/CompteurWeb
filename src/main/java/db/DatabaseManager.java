@@ -17,7 +17,7 @@ public class DatabaseManager {
         try {
             Class.forName("com.mysql.cj.jdbc.Driver").newInstance();
             this.conn = DriverManager.getConnection
-                    ("jdbc:mysql://defortet.ddns.net:3306/compteurweb", "vtfl", "vtfl");
+                    ("jdbc:mysql://defortet.ddns.net:3306/twap", "vtfl", "vtfl");
         } catch (Exception e) {
             e.printStackTrace();
         }

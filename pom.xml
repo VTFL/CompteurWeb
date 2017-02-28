@@ -93,7 +93,7 @@
         <configuration>
           <path>/${project.build.finalName}</path>
           <update>true</update>
-          <url>http://localhost:8080/manager/text</url>
+          <url>http://defortet.ddns.net:8080/manager/text</url>
           <username>ADMIN</username>
           <password>0000</password>
         </configuration>
